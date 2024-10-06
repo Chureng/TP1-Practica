@@ -19,6 +19,10 @@ public class Lemming {
 		return position;
 	}
 	
+	public Direction getMove() {
+		return move;
+	}
+	
 	/**
 	 *  Implements the automatic update	
 	 */
