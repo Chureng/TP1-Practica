@@ -6,24 +6,29 @@ import tp1.logic.gameobjects.Wall;
 import tp1.logic.gameobjects.ExitDoor;
 
 public class GameObjectContainer {
-	//TODO fill your code
-	private ArrayList<Lemming> lemmingsArray;
-	private ArrayList<Wall> wallsArray;
+	
+	private ArrayList<Lemming> lemmings;
+	private ArrayList<Wall> walls;	
 	private ExitDoor exitDoor;
-	
+	// Constructor
 	public GameObjectContainer() {
-		lemmingsArray = new ArrayList<>();
+		lemmings = new ArrayList<>();
+		walls = new ArrayList<>();
+	}
+	// Add
+	public void add(Lemming lemming) {
+		lemmings.add(lemming);
 	}
 	
-	public void add(Lemming lemming) {
-		lemmingsArray.add(lemming);
-	}
-	 
 	public void add(Wall wall) {
-		 
+		walls.add(wall);
 	}
-	 
-	public void add(ExitDoor exitDoor) {
+	
+	public void setExitDoor(ExitDoor exitDoor) {
+		this.exitDoor = exitDoor;
+	}
+	// Update
+	public void update() {
 		
 	}
 

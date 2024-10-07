@@ -3,30 +3,51 @@ package tp1.logic.gameobjects;
 import tp1.logic.Game;
 import tp1.logic.Position;
 import tp1.logic.Direction;
+import tp1.view.Messages;
 
 public class Lemming {
-	private Position position;
-	private boolean alive;
-	private Direction move;
 	private int fallDamage;
-	//TODO fill your code
-	
-	public Lemming(int col, int row) {
-		
+	private boolean alive;
+	private Position position;
+	private Direction direction;
+
+	public Lemming(int row, int col) {
+		this.fallDamage = 0;
+		this.alive = true;
+		this.position = new Position(row, col);
+		this.direction = Direction.RIGHT;
 	}
-	
+
+	// Getters
+
+	public int getFallDamage() {
+		return fallDamage;
+	}
+
+	public boolean getAlive() {
+		return alive;
+	}
+
 	public Position getPosition() {
 		return position;
 	}
-	
-	public Direction getMove() {
-		return move;
+
+	public Direction getDirection() {
+		return direction;
 	}
-	
-	/**
-	 *  Implements the automatic update	
-	 */
+
+	// Update
+
 	public void update() {
-		//TODO fill your code
+
+	}
+
+	// Print
+	public String getIcon(Lemming lemming) {
+		if (lemming.getDirection() == Direction.RIGHT) {
+			return Messages.LEMMING_RIGHT;
+		} else {
+			return Messages.LEMMING_LEFT;
+		}
 	}
 }

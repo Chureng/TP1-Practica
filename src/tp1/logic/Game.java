@@ -1,13 +1,19 @@
 package tp1.logic;
+import tp1.logic.GameObjectContainer;
+import tp1.logic.gameobjects.Lemming;
 
 public class Game {
 
 	public static final int DIM_X = 10;
 	public static final int DIM_Y = 10;
+	
+	private int nLevel;
 	private GameObjectContainer container;
+	
 
 	public Game(int nLevel) {
-		// TODO Auto-generated constructor stub
+		this.nLevel = nLevel;
+		
 	}
 
 	public int getCycle() {
@@ -37,7 +43,7 @@ public class Game {
 
 	public String positionToString(int col, int row) {
 		// TODO Auto-generated method stub
-		return "🚪";
+		return " ";
 	}
 
 	public boolean playerWins() {
@@ -54,5 +60,9 @@ public class Game {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void initGame1() {
+             
+    }
 
 }

@@ -1,15 +1,29 @@
 package tp1.logic;
 
-/**
- * 
- * Immutable class to encapsulate and manipulate positions in the game board
- * 
- */
+
 public class Position {
 
 	private int col;
 	private int row;
-
-	//TODO fill your code
-
+	// Constructor
+	public Position(int col, int row) {
+		this.col = col;
+		this.row = row;
+	}
+	// Getters
+	public int getCol() {
+		return col;
+	}
+	
+	public int getRow() {
+		return row;
+	}
+	// Setters
+	public void setCol(int col) {
+		this.col = col;
+	}
+	
+	public void setRow(int row) {
+		this.row = row;
+	}
 }
