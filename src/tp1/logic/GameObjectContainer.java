@@ -27,6 +27,14 @@ public class GameObjectContainer {
 	public void setExitDoor(ExitDoor exitDoor) {
 		this.exitDoor = exitDoor;
 	}
+	// Getters
+	public ArrayList<Lemming> getLemmings(){
+		return lemmings;
+	}
+	
+	public ArrayList<Wall> getWalls(){
+		return walls;
+	}
 	// Update
 	public void update() {
 		

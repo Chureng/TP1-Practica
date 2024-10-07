@@ -11,10 +11,10 @@ public class Lemming {
 	private Position position;
 	private Direction direction;
 
-	public Lemming(int row, int col) {
+	public Lemming(Position position) {
 		this.fallDamage = 0;
 		this.alive = true;
-		this.position = new Position(row, col);
+		this.position = position;
 		this.direction = Direction.RIGHT;
 	}
 
