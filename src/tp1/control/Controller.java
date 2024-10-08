@@ -4,7 +4,7 @@ import tp1.logic.Game;
 import tp1.view.GameView;
 
 /**
- *  Accepts user input and coordinates the game execution logic
+ * Accepts user input and coordinates the game execution logic
  */
 public class Controller {
 
@@ -16,7 +16,6 @@ public class Controller {
 		this.view = view;
 	}
 
-
 	/**
 	 * Runs the game logic, coordinate Model(game) and View(view)
 	 * 
@@ -24,6 +23,10 @@ public class Controller {
 	public void run() {
 		view.showWelcome();
 		view.showGame();
+		while(view.getPrompt().toString()!="exit") {
+			game.update();
+			view.showGame();
+		}
 		view.showEndMessage();
 	}
 

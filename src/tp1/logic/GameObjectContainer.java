@@ -16,11 +16,15 @@ public class GameObjectContainer {
 		walls = new ArrayList<>();
 	}
 	// Add
-	public void add(Lemming lemming) {
+	public void addLemming(int col, int row) {
+		Position position = new Position(col, row);
+		Lemming lemming = new Lemming(position);
 		lemmings.add(lemming);
 	}
 	
-	public void add(Wall wall) {
+	public void addWall(int col, int row) {
+		Position position = new Position(col, row);
+		Wall wall = new Wall(position);
 		walls.add(wall);
 	}
 	
@@ -36,8 +40,10 @@ public class GameObjectContainer {
 		return walls;
 	}
 	// Update
-	public void update() {
-		
+	public void update(GameObjectContainer container) {
+		for (Lemming x: container.getLemmings()) {
+			x.update(x);
+		}
 	}
 
 }

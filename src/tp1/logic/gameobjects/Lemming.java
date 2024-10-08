@@ -36,10 +36,23 @@ public class Lemming {
 		return direction;
 	}
 
-	// Update
+	// Setters
 
-	public void update() {
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 
+	// Funciones
+
+	public void step(Lemming lemming) {
+		int x = lemming.getPosition().getCol() + lemming.getDirection().getX();
+		int y = lemming.getPosition().getRow() + lemming.getDirection().getY();
+		Position step = new Position(x, y);
+		lemming.setPosition(step);
+	}
+
+	public void update(Lemming lemming) {
+		lemming.step(lemming);
 	}
 
 	// Print
