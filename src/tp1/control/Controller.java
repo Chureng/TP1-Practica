@@ -12,35 +12,36 @@ public class Controller {
 		this.game = game;
 		this.view = view;
 	}
-	
+
 	public void run() {
 		view.showWelcome();
-		if (game.getLevel()==1) {
+		if (game.getLevel() == 1) {
 			game.initGame1();
-		}else {
+		} else {
 			game.initGame0();
 		}
 		view.showGame();
 		String[] command;
-		command = view.getPrompt();
-		while (!command[0].equalsIgnoreCase("exit") && !game.playerWins() && !game.playerLooses()) {
-			if (command.length>=2) {
-				System.out.println(Messages.UNKNOWN_COMMAND);
-			}
-			else if (command[0].equalsIgnoreCase("r") || command[0].equals("reset")) {
-				game.initGame1();
-				view.showGame();
-			} else if (command[0].equalsIgnoreCase("h") || command[0].equals("help")) {
-				System.out.println(game.help());
-			} else if (command[0].equalsIgnoreCase("n") || command[0].equals("none") || command[0].equals("") ) {
-				game.update();
-				game.updateCycle();
-				view.showGame();
-			}else {
-				System.out.println(Messages.UNKNOWN_COMMAND);
-			}
+		do {
 			command = view.getPrompt();
-		}
+			if (!command[0].equals(Messages.COMMAND_EXIT_NAME) && !command[0].equals(Messages.COMMAND_EXIT_SHORTCUT)) {
+				if (command.length >= 2) {
+					System.out.println(Messages.ERROR_INCORRECT_PARAMETER_NUMBER);
+				} else if (command[0].equalsIgnoreCase(Messages.COMMAND_RESET_NAME) || command[0].equalsIgnoreCase(Messages.COMMAND_RESET_SHORTCUT)) {
+					game.initGame1();
+					view.showGame();
+				} else if (command[0].equalsIgnoreCase(Messages.COMMAND_HELP_NAME) || command[0].equalsIgnoreCase(Messages.COMMAND_HELP_SHORTCUT) ) {
+					System.out.println(game.help());
+				} else if (command[0].equalsIgnoreCase(Messages.COMMAND_NONE_NAME) || command[0].equals(Messages.COMMAND_NONE_SHORTCUT) || command[0].equals(Messages.EMPTY)) {
+					game.update();
+					game.updateCycle();
+					view.showGame();
+				} else {
+					System.out.println(Messages.ERROR_UNKNOWN_COMMAND);
+				}
+			}
+		} while (!command[0].equals(Messages.COMMAND_EXIT_NAME) && !command[0].equals(Messages.COMMAND_EXIT_SHORTCUT) && !game.playerWins() && !game.playerLooses());
+
 		view.showEndMessage();
 	}
 

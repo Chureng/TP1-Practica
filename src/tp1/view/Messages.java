@@ -23,7 +23,7 @@ public class Messages {
 	public static final String DEBUG = "[DEBUG] Executing: %s%n";
 
 	public static final String ERROR = "[ERROR] Error: %s%n";
-
+	
 	public static final String LINE_SEPARATOR = System.lineSeparator();
 
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";
@@ -41,10 +41,14 @@ public class Messages {
 	public static final String HELP = String.join(LINE_SEPARATOR+"   ", HELP_LINES) + LINE_SEPARATOR;
 	
 	public static final String UNKNOWN_COMMAND = "Unknown command";
+	
+	public static final String ERROR_UNKNOWN_COMMAND = String.format(ERROR, UNKNOWN_COMMAND);
 
 	public static final String COMMAND_PARAMETERS_MISSING = "Missing parameters";
 
 	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";
+	
+	public static final String ERROR_INCORRECT_PARAMETER_NUMBER = String.format(ERROR, COMMAND_INCORRECT_PARAMETER_NUMBER);
 
 	public static final String INVALID_POSITION = "Invalid position (%s, %s)";
 
@@ -77,16 +81,22 @@ public class Messages {
 	public static final String COMMAND_NONE_DETAILS = "[n]one | \"\"";
 	public static final String COMMAND_NONE_HELP = "user does not perform any action";
 	
+	public static final String COMMAND_RESET_NAME = "reset";
+	public static final String COMMAND_RESET_SHORTCUT = "r";
+	public static final String COMMAND_RESET_DETAILS = "[r]eset";
+	public static final String COMMAND_RESET_HELP = "end the execution of the game";
+	
+	public static final String COMMAND_HELP_NAME = "help";
+	public static final String COMMAND_HELP_SHORTCUT = "h";
+	public static final String COMMAND_HELP_DETAILS = "[h]elp";
+	public static final String COMMAND_HELP_HELP = "print this help message";
+
 	public static final String COMMAND_EXIT_NAME = "exit";
 	public static final String COMMAND_EXIT_SHORTCUT = "e";
 	public static final String COMMAND_EXIT_DETAILS = "[e]xit";
 	public static final String COMMAND_EXIT_HELP = "exits the game";
 
-	public static final String COMMAND_HELP_NAME = "help";
-	public static final String COMMAND_HELP_SHORTCUT = "h";
-	public static final String COMMAND_HELP_DETAILS = "[h]elp";
-	public static final String COMMAND_HELP_HELP = "shows this help";
-
+	
 //Symbols
 	public static final String EMPTY = "";
 	public static final String WALL = MyStringUtils.repeat("▓",ConsoleView.CELL_SIZE);

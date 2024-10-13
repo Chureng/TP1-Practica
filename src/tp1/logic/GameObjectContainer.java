@@ -2,6 +2,7 @@ package tp1.logic;
 
 import java.util.ArrayList;
 import tp1.logic.gameobjects.*;
+import tp1.logic.lemmingRoles.*;
 
 public class GameObjectContainer {
 
@@ -41,9 +42,9 @@ public class GameObjectContainer {
 	}
 
 	// Lemming functions
-	public void addLemming(int col, int row, Game game) {
+	public void addLemming(int col, int row, Game game, WalkerRole walkerRole) {
 		Position position = new Position(col, row);
-		Lemming lemming = new Lemming(position, game);
+		Lemming lemming = new Lemming(position, game, walkerRole);
 		lemmings.add(lemming);
 	}
 

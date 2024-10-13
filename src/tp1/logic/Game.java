@@ -2,7 +2,7 @@ package tp1.logic;
 
 import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
-
+import tp1.logic.lemmingRoles.*;
 public class Game {
 
 	public static final int DIM_X = 10;
@@ -28,7 +28,7 @@ public class Game {
 	public int getLevel() {
 		return this.nLevel;
 	}
-	
+
 	public int getCycle() {
 		return this.cycle;
 	}
@@ -51,60 +51,59 @@ public class Game {
 	}
 
 	public int numLemmingsToWin() {
-		return nLevel;
+		return 2;
 	}
 
 	public String positionToString(int col, int row) {
 		Position position = new Position(col, row);
-
+		StringBuilder icons = new StringBuilder();
 		// Lemmings
-		StringBuilder multipleLemmings = new StringBuilder();
+
 		for (Lemming lemming : getContainer().getLemmings()) {
 			if (lemming.getPosition().equals(position)) {
-				multipleLemmings.append(lemming.getIcon());
+				icons.append(lemming.getWalkerRole().getIcon(lemming));
 			}
-		}
-		if (multipleLemmings.length() > 0) {
-			return multipleLemmings.toString();
 		}
 
 		// Walls
 		for (Wall wall : getContainer().getWalls()) {
 			if (wall.getPosition().equals(position)) {
-				return wall.getIcon();
+				icons.append(wall.getIcon());
 			}
 		}
 
 		// Exit door
 		ExitDoor exitDoor = getContainer().getExitDoor();
 		if (exitDoor.getPosition().equals(position)) {
-			return exitDoor.getIcon();
+			icons.append(exitDoor.getIcon());
 		}
 
-		return " "; // No hay nada
+		return icons.length() > 0 ? icons.toString() : " "; // No hay nada
 	}
 
 	public boolean playerWins() {
-		return (container.getLemmings().size() == 0 && container.getLeftLemmings() >= nLevel);
+		return (container.getLemmings().size() == 0 && container.getLeftLemmings() >= 2);
 	}
 
 	public boolean playerLooses() {
-		return (container.getLemmings().size() == 0 && container.getLeftLemmings() < nLevel);
+		return (container.getLemmings().size() == 0 && container.getLeftLemmings() < 2);
 	}
 
 	public String help() {
 		return Messages.HELP;
 	}
-	
+
 	public void initGame0() {
 		this.container = new GameObjectContainer();
-		
+		WalkerRole walker = new WalkerRole("walker");
+		setCycle(0);
+
 		// Lemmings
-		container.addLemming(9, 0, this);
+		container.addLemming(9, 0, this, walker);
 
-		container.addLemming(3, 3, this);
+		container.addLemming(2, 3, this, walker);
 
-		container.addLemming(0, 8, this);
+		container.addLemming(0, 8, this, walker);
 
 		// Walls
 		container.addWall(8, 1);
@@ -134,14 +133,16 @@ public class Game {
 
 	public void initGame1() {
 		this.container = new GameObjectContainer();
-		
+		WalkerRole walker = new WalkerRole("walker");
+		setCycle(0);
+
 		// Lemmings
-		container.addLemming(9, 0, this);
+		container.addLemming(9, 0, this, walker);
 
-		container.addLemming(2, 3, this);
-		container.addLemming(3, 3, this);
+		container.addLemming(2, 3, this, walker);
+		container.addLemming(3, 3, this, walker);
 
-		container.addLemming(0, 8, this);
+		container.addLemming(0, 8, this, walker);
 
 		// Walls
 		container.addWall(8, 1);
