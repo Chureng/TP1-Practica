@@ -9,7 +9,7 @@ public class ConsoleColorsAnsiCodes {
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_CYAN = "\u001B[38;2;65;73;226m";
     public static final String ANSI_WHITE = "\u001B[37m";
     public static final String ANSI_ORANGE = "\u001B[38;2;255;128;0m";
     public static final String ANSI_ROSE   = "\u001B[38;2;255;151;203m";
@@ -27,7 +27,7 @@ public class ConsoleColorsAnsiCodes {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-    public static final String ANSI_ORANGE_BACKGROUND = "\u001B[48;2;255;128;0m";
+    public static final String ANSI_ORANGE_BACKGROUND = "\u001B[48;2;207;66;21m";
     public static final String ANSI_LBLUE_BACKGROUND  = "\u001B[48;2;53;149;240m";
     public static final String ANSI_LGREEN_BACKGROUND = "\u001B[48;2;17;245;120m";
     public static final String ANSI_GRAY_BACKGROUND   = "\u001B[48;2;176;174;174m";

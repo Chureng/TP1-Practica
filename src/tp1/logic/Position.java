@@ -19,4 +19,21 @@ public class Position {
 	public int getRow() {
 		return row;
 	}
+
+	// Functions
+	public boolean equals(Position position) {
+		if (position == null) {
+			return false;
+		}
+		if (position.getClass() != this.getClass()) {
+			return false;
+		}
+		Position other = (Position) position;
+		if (other.getCol() == this.col && other.getRow() == this.row) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

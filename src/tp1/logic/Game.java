@@ -1,96 +1,133 @@
 package tp1.logic;
 
-import tp1.logic.GameObjectContainer;
-import tp1.logic.gameobjects.Lemming;
-import tp1.logic.gameobjects.Wall;
+import tp1.logic.gameobjects.*;
+import tp1.view.Messages;
 
 public class Game {
 
 	public static final int DIM_X = 10;
 	public static final int DIM_Y = 10;
 
-	private GameObjectContainer container;
 	private int nLevel;
+	private int cycle;
+	private GameObjectContainer container;
 
+	// Constructor
 	public Game(int nLevel) {
 		this.nLevel = nLevel;
-		initGame1();
+		this.cycle = 0;
+		this.container = new GameObjectContainer();
 	}
 
+	// Setters
+	public void setCycle(int cycle) {
+		this.cycle = cycle;
+	}
+
+	// Getters
 	public int getCycle() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.cycle;
 	}
 
+	public GameObjectContainer getContainer() {
+		return this.container;
+	}
+
+	// Functions
 	public int numLemmingsInBoard() {
-		int count = 0;
-		for (Lemming x : container.getLemmings()) {
-			if (x.getAlive()) {
-				count++;
-			}
-		}
-		return count;
+		return container.getLemmings().size();
 	}
 
 	public int numLemmingsDead() {
-		// TODO Auto-generated method stub
-		return 0;
+		return container.getDeadLemmings();
 	}
 
 	public int numLemmingsExit() {
-		// TODO Auto-generated method stub
-		return 0;
+		return container.getLeftLemmings();
 	}
 
 	public int numLemmingsToWin() {
-		// TODO Auto-generated method stub
-		return 0;
+		return nLevel;
 	}
 
 	public String positionToString(int col, int row) {
-		for (Lemming x : container.getLemmings()) {
-			if (x.getPosition().getCol() == col && x.getPosition().getRow() == row) {
-				return x.getIcon(x);
+		Position position = new Position(col, row);
+		StringBuilder multipleLemmings = new StringBuilder();
+		
+		for (Lemming lemming : getContainer().getLemmings()) {
+			if (lemming.getPosition().equals(position)) {
+				multipleLemmings.append(lemming.getIcon());
 			}
 		}
-
-		for (Wall x : container.getWalls()) {
-			if (x.getPosition().getCol() == col && x.getPosition().getRow() == row) {
-				return x.getIcon(x);
+		if (multipleLemmings.length()>0) {
+			return multipleLemmings.toString();
+		}
+		
+		for (Wall wall : getContainer().getWalls()) {
+			if (wall.getPosition().equals(position)) {
+				return wall.getIcon();
 			}
+		}
+		ExitDoor exitDoor = getContainer().getExitDoor();
+		if (exitDoor.getPosition().equals(position)) {
+			return exitDoor.getIcon();
 		}
 		return " ";
 	}
 
 	public boolean playerWins() {
-		// TODO Auto-generated method stub
-		return false;
+		return (container.getLemmings().size() == 0 && container.getLeftLemmings() >= nLevel);
 	}
 
 	public boolean playerLooses() {
-		// TODO Auto-generated method stub
-		return false;
+		return (container.getLemmings().size() == 0 && container.getLeftLemmings() < nLevel);
 	}
 
 	public String help() {
-		// TODO Auto-generated method stub
-		return null;
+		return Messages.HELP;
 	}
 
 	public void initGame1() {
-		container = new GameObjectContainer();
 		// Lemmings
-		container.addLemming(2, 3);
-		container.addLemming(3, 3);
+		container.addLemming(9, 0, this);
+
+		container.addLemming(2, 3, this);
+		container.addLemming(3, 3, this);
+
+		container.addLemming(0, 8, this);
 
 		// Walls
+		container.addWall(8, 1);
+		container.addWall(9, 1);
+
 		container.addWall(2, 4);
 		container.addWall(3, 4);
 		container.addWall(4, 4);
+
+		container.addWall(7, 5);
+
+		container.addWall(4, 6);
+		container.addWall(5, 6);
+		container.addWall(6, 6);
+		container.addWall(7, 6);
+
+		container.addWall(8, 8);
+
+		container.addWall(0, 9);
+		container.addWall(1, 9);
+		container.addWall(8, 9);
+		container.addWall(9, 9);
+
+		// Exit door
+		container.setExitDoor(4, 5);
 	}
-	
+
+	public void updateCycle() {
+		this.cycle++;
+	}
+
 	public void update() {
-		container.update(container);
+		container.update();
 	}
 
 }

@@ -1,11 +1,8 @@
 package tp1.control;
 
 import tp1.logic.Game;
-import tp1.view.GameView;
+import tp1.view.*;
 
-/**
- * Accepts user input and coordinates the game execution logic
- */
 public class Controller {
 
 	private Game game;
@@ -15,17 +12,27 @@ public class Controller {
 		this.game = game;
 		this.view = view;
 	}
-
-	/**
-	 * Runs the game logic, coordinate Model(game) and View(view)
-	 * 
-	 */
+	
 	public void run() {
 		view.showWelcome();
+		game.initGame1();
 		view.showGame();
-		while(view.getPrompt().toString()!="exit") {
-			game.update();
-			view.showGame();
+		String[] command;
+		command = view.getPrompt();
+		while (!command[0].equalsIgnoreCase("exit") && !game.playerWins() && !game.playerLooses()) {
+			if (command[0].equalsIgnoreCase("r") || command[0].equals("reset")) {
+				game.initGame1();
+				view.showGame();
+			} else if (command[0].equalsIgnoreCase("h") || command[0].equals("help")) {
+				System.out.println(game.help());
+			} else if (command[0].equalsIgnoreCase("n") || command[0].equals("none") || command[0].equals("") ) {
+				game.update();
+				game.updateCycle();
+				view.showGame();
+			}else {
+				System.out.println(Messages.UNKNOWN_COMMAND);
+			}
+			command = view.getPrompt();
 		}
 		view.showEndMessage();
 	}
