@@ -15,12 +15,19 @@ public class Controller {
 	
 	public void run() {
 		view.showWelcome();
-		game.initGame1();
+		if (game.getLevel()==1) {
+			game.initGame1();
+		}else {
+			game.initGame0();
+		}
 		view.showGame();
 		String[] command;
 		command = view.getPrompt();
 		while (!command[0].equalsIgnoreCase("exit") && !game.playerWins() && !game.playerLooses()) {
-			if (command[0].equalsIgnoreCase("r") || command[0].equals("reset")) {
+			if (command.length>=2) {
+				System.out.println(Messages.UNKNOWN_COMMAND);
+			}
+			else if (command[0].equalsIgnoreCase("r") || command[0].equals("reset")) {
 				game.initGame1();
 				view.showGame();
 			} else if (command[0].equalsIgnoreCase("h") || command[0].equals("help")) {

@@ -25,6 +25,10 @@ public class Game {
 	}
 
 	// Getters
+	public int getLevel() {
+		return this.nLevel;
+	}
+	
 	public int getCycle() {
 		return this.cycle;
 	}
@@ -91,8 +95,46 @@ public class Game {
 	public String help() {
 		return Messages.HELP;
 	}
+	
+	public void initGame0() {
+		this.container = new GameObjectContainer();
+		
+		// Lemmings
+		container.addLemming(9, 0, this);
+
+		container.addLemming(3, 3, this);
+
+		container.addLemming(0, 8, this);
+
+		// Walls
+		container.addWall(8, 1);
+		container.addWall(9, 1);
+
+		container.addWall(2, 4);
+		container.addWall(3, 4);
+		container.addWall(4, 4);
+
+		container.addWall(7, 5);
+
+		container.addWall(4, 6);
+		container.addWall(5, 6);
+		container.addWall(6, 6);
+		container.addWall(7, 6);
+
+		container.addWall(8, 8);
+
+		container.addWall(0, 9);
+		container.addWall(1, 9);
+		container.addWall(8, 9);
+		container.addWall(9, 9);
+
+		// Exit door
+		container.setExitDoor(4, 5);
+	}
 
 	public void initGame1() {
+		this.container = new GameObjectContainer();
+		
 		// Lemmings
 		container.addLemming(9, 0, this);
 
