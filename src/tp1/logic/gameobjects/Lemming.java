@@ -119,22 +119,22 @@ public class Lemming {
 		Position under = new Position(getPosition().getCol(), getPosition().getRow() + 1);
 		Position in_front = new Position(getPosition().getCol() + getDirection().getX(), getPosition().getRow());
 
-		if (in_front.getCol() < 10 && in_front.getCol() >= 0) {
-			if (!getGame().getContainer().hasWall(under)) {
+		if (in_front.getCol() < 10 && in_front.getCol() >= 0) { // Comprobar que no se sale por los laterales
+			if (!getGame().getContainer().hasWall(under)) { // Si no hay muro, el lemming cae
 				if (this.getFallDamage() == 0) {
 					this.setfallDamage(distanceFromGround());
 				}
 				this.fall();
-			} else if (this.getFallDamage() >= 3) {
+			} else if (this.getFallDamage() >= 3) { // Si su daño de caida es >=3 entonces muere
 				this.setAlive(false);
-			} else if (getGame().getContainer().hasExitDoor(in_front)) {
+			} else if (getGame().getContainer().hasExitDoor(in_front)) { // Si tiene una puerta en frente, sale
 				this.setHasLeft(true);
-			} else if (getGame().getContainer().hasWall(in_front)) {
+			} else if (getGame().getContainer().hasWall(in_front)) { // Si tiene una pared en frente, cambia de dirección
 				this.changeDirection();
-			} else {
-				this.step();
+			} else { // Si no ocurre ningún evento especial, da un paso
+				this.step(); 
 			}
-		}else {
+		}else { // Si se se sale por los laterales, muere
 			this.setAlive(false);
 		}
 	}

@@ -35,7 +35,7 @@ public class GameObjectContainer {
 	public int getDeadLemmings() {
 		return this.deadLemmings;
 	}
-	
+
 	public int getLeftLemmings() {
 		return this.leftLemmings;
 	}
@@ -49,20 +49,22 @@ public class GameObjectContainer {
 
 	public void deleteLemmings() {
 		for (int i = 0; i < this.getLemmings().size(); i++) {
-			if (!this.getLemmings().get(i).getAlive()) {
+			if (!this.getLemmings().get(i).getAlive()) { // Quitar lemmings muertos + actualizar contador lemmings
+															// muertos
 				this.getLemmings().remove(i);
 				this.updateDeadLemmings();
-			} else if (this.getLemmings().get(i).getHasLeft()) {
+			} else if (this.getLemmings().get(i).getHasLeft()) { // Quitar lemmings salidos + actualizar contador de
+																	// lemmings salidos
 				this.getLemmings().remove(i);
 				this.updateLeftLemmings();
 			}
 		}
 	}
-	
+
 	public void updateDeadLemmings() {
 		this.deadLemmings++;
 	}
-	
+
 	public void updateLeftLemmings() {
 		this.leftLemmings++;
 	}
@@ -74,9 +76,9 @@ public class GameObjectContainer {
 		walls.add(wall);
 	}
 
-	public boolean hasWall(Position pos) {
+	public boolean hasWall(Position position) {
 		for (Wall wall : getWalls()) {
-			if (wall.getPosition().equals(pos)) {
+			if (wall.getPosition().equals(position)) {
 				return true;
 			}
 		}

@@ -52,27 +52,32 @@ public class Game {
 
 	public String positionToString(int col, int row) {
 		Position position = new Position(col, row);
+
+		// Lemmings
 		StringBuilder multipleLemmings = new StringBuilder();
-		
 		for (Lemming lemming : getContainer().getLemmings()) {
 			if (lemming.getPosition().equals(position)) {
 				multipleLemmings.append(lemming.getIcon());
 			}
 		}
-		if (multipleLemmings.length()>0) {
+		if (multipleLemmings.length() > 0) {
 			return multipleLemmings.toString();
 		}
-		
+
+		// Walls
 		for (Wall wall : getContainer().getWalls()) {
 			if (wall.getPosition().equals(position)) {
 				return wall.getIcon();
 			}
 		}
+
+		// Exit door
 		ExitDoor exitDoor = getContainer().getExitDoor();
 		if (exitDoor.getPosition().equals(position)) {
 			return exitDoor.getIcon();
 		}
-		return " ";
+
+		return " "; // No hay nada
 	}
 
 	public boolean playerWins() {
