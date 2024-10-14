@@ -17,7 +17,7 @@ public class ExitDoor {
 		return position;
 	}
 	
-	// Funtions;
+	// Functions;
 	public String getIcon() {
 		return Messages.EXIT_DOOR;
 	}

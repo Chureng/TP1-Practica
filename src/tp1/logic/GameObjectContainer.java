@@ -41,6 +41,14 @@ public class GameObjectContainer {
 		return this.leftLemmings;
 	}
 
+	// Setters
+	public void setExitDoor(int col, int row) {
+		Position position = new Position(col, row);
+		this.exitDoor = new ExitDoor(position);
+	}
+
+	// Functions
+
 	// Lemming functions
 	public void addLemming(int col, int row, Game game, WalkerRole walkerRole) {
 		Position position = new Position(col, row);
@@ -48,25 +56,23 @@ public class GameObjectContainer {
 		lemmings.add(lemming);
 	}
 
-	public void deleteLemmings() {
+	private void deleteLemmings() {
 		for (int i = 0; i < this.getLemmings().size(); i++) {
-			if (!this.getLemmings().get(i).getAlive()) { // Quitar lemmings muertos + actualizar contador lemmings
-															// muertos
+			if (!this.getLemmings().get(i).getAlive()) {
 				this.getLemmings().remove(i);
 				this.updateDeadLemmings();
-			} else if (this.getLemmings().get(i).getHasLeft()) { // Quitar lemmings salidos + actualizar contador de
-																	// lemmings salidos
+			} else if (this.getLemmings().get(i).getHasLeft()) {
 				this.getLemmings().remove(i);
 				this.updateLeftLemmings();
 			}
 		}
 	}
 
-	public void updateDeadLemmings() {
+	private void updateDeadLemmings() {
 		this.deadLemmings++;
 	}
 
-	public void updateLeftLemmings() {
+	private void updateLeftLemmings() {
 		this.leftLemmings++;
 	}
 
@@ -87,16 +93,11 @@ public class GameObjectContainer {
 	}
 
 	// Exit door functions
-	public void setExitDoor(int col, int row) {
-		Position position = new Position(col, row);
-		this.exitDoor = new ExitDoor(position);
-	}
-
 	public boolean hasExitDoor(Position pos) {
 		return exitDoor.getPosition().equals(pos);
 	}
 
-	// Functions
+	// Update
 	public void update() {
 		for (Lemming lemming : this.getLemmings()) {
 			lemming.update();

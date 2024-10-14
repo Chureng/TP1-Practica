@@ -21,14 +21,15 @@ public class Position {
 	}
 
 	// Functions
-	public boolean equals(Position position) {
-		if (position == null) {
+	@Override
+	public boolean equals(Object object) {
+		if (object == null) {
 			return false;
 		}
-		if (position.getClass() != this.getClass()) {
+		if (object.getClass() != this.getClass()) {
 			return false;
 		}
-		Position other = (Position) position;
+		Position other = (Position) object;
 		if (other.getCol() == this.col && other.getRow() == this.row) {
 			return true;
 		} else {

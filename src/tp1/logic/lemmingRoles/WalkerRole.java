@@ -7,25 +7,25 @@ import tp1.view.Messages;
 
 public class WalkerRole {
 	private String role;
-	
-	//Constructor
+
+	// Constructor
 	public WalkerRole(String role) {
 		this.role = role;
 	}
-	
+
 	// Getters
 	public String getRole() {
 		return role;
 	}
-	
+
 	// Setters
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	// Funcitions
 	public void play(Lemming lemming) {
-		if (role=="walker") {
+		if (role == "walker") {
 			Position under = new Position(lemming.getPosition().getCol(), lemming.getPosition().getRow() + 1);
 			Position in_front = new Position(lemming.getPosition().getCol() + lemming.getDirection().getX(),
 					lemming.getPosition().getRow());
@@ -37,9 +37,10 @@ public class WalkerRole {
 					lemming.fall();
 				} else if (lemming.getFallDamage() >= 3) { // Si su daño de caida es >=3 entonces muere
 					lemming.setAlive(false);
-				} else if (lemming.getGame().getContainer().hasExitDoor(lemming.getPosition())) { // Si tiene una puerta en frente se sale 
+				} else if (lemming.getGame().getContainer().hasExitDoor(lemming.getPosition())) { // Si tiene una puerta se sale																			
 					lemming.setHasLeft(true);
-				} else if (in_front.getCol() > 9 || in_front.getCol() < 0 || lemming.getGame().getContainer().hasWall(in_front)) {
+				} else if (in_front.getCol() > 9 || in_front.getCol() < 0
+						|| lemming.getGame().getContainer().hasWall(in_front)) {
 					lemming.changeDirection();
 				} else { // Si no ocurre ningún evento especial, da un paso
 					lemming.step();
