@@ -164,7 +164,7 @@ public class Game {
 			icons.append(exitDoor.getIcon());
 		}
 
-		return icons.length() > 0 ? icons.toString() : "";
+		return icons.length() > 0 ? icons.toString() : " ";
 	}
 
 	public boolean playerWins() {
